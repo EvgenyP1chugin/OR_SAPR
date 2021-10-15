@@ -1,2 +1,2 @@
 # OR_SAPR
-my university project
+Плагин "Стеллаж" для Компас 3D
