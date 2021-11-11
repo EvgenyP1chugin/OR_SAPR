@@ -1,7 +1,7 @@
 ﻿
 namespace RackUI
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -42,6 +42,7 @@ namespace RackUI
             this.HeightFromFloor = new System.Windows.Forms.TextBox();
             this.MaterialThickness = new System.Windows.Forms.TextBox();
             this.ShelvesNumber = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -100,7 +101,7 @@ namespace RackUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 203);
+            this.button1.Location = new System.Drawing.Point(333, 204);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 29);
             this.button1.TabIndex = 12;
@@ -114,6 +115,7 @@ namespace RackUI
             this.RackHeight.Name = "RackHeight";
             this.RackHeight.Size = new System.Drawing.Size(100, 23);
             this.RackHeight.TabIndex = 13;
+            this.RackHeight.Text = "1000";
             // 
             // RackDepth
             // 
@@ -121,6 +123,7 @@ namespace RackUI
             this.RackDepth.Name = "RackDepth";
             this.RackDepth.Size = new System.Drawing.Size(100, 23);
             this.RackDepth.TabIndex = 14;
+            this.RackDepth.Text = "300";
             // 
             // RackWidth
             // 
@@ -128,6 +131,7 @@ namespace RackUI
             this.RackWidth.Name = "RackWidth";
             this.RackWidth.Size = new System.Drawing.Size(100, 23);
             this.RackWidth.TabIndex = 15;
+            this.RackWidth.Text = "300";
             // 
             // HeightFromFloor
             // 
@@ -135,6 +139,7 @@ namespace RackUI
             this.HeightFromFloor.Name = "HeightFromFloor";
             this.HeightFromFloor.Size = new System.Drawing.Size(100, 23);
             this.HeightFromFloor.TabIndex = 16;
+            this.HeightFromFloor.Text = "80";
             // 
             // MaterialThickness
             // 
@@ -142,6 +147,7 @@ namespace RackUI
             this.MaterialThickness.Name = "MaterialThickness";
             this.MaterialThickness.Size = new System.Drawing.Size(100, 23);
             this.MaterialThickness.TabIndex = 17;
+            this.MaterialThickness.Text = "10";
             // 
             // ShelvesNumber
             // 
@@ -149,12 +155,24 @@ namespace RackUI
             this.ShelvesNumber.Name = "ShelvesNumber";
             this.ShelvesNumber.Size = new System.Drawing.Size(100, 23);
             this.ShelvesNumber.TabIndex = 18;
+            this.ShelvesNumber.Text = "1";
             // 
-            // Form1
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(13, 204);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(89, 29);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "Схема";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 244);
+            this.ClientSize = new System.Drawing.Size(446, 248);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.ShelvesNumber);
             this.Controls.Add(this.MaterialThickness);
             this.Controls.Add(this.HeightFromFloor);
@@ -168,7 +186,7 @@ namespace RackUI
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "RackUI";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,6 +207,7 @@ namespace RackUI
         private System.Windows.Forms.TextBox HeightFromFloor;
         private System.Windows.Forms.TextBox MaterialThickness;
         private System.Windows.Forms.TextBox ShelvesNumber;
+        private System.Windows.Forms.Button button2;
     }
 }
 

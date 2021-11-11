@@ -10,9 +10,13 @@ using System.Windows.Forms;
 
 namespace RackUI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        private 
+        Color _incorrentInputColor = Color.Red;
+        Color _correntInputColor = Color.White;
+
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -21,9 +25,9 @@ namespace RackUI
         {
             try
             {
-                if (double.Parse(RackHeight.Text) < 1000 || double.Parse(RackHeight.Text) > 3000)
+                if (int.Parse(RackHeight.Text) < 1000 || int.Parse(RackHeight.Text) > 3000)
                 {
-                    RackHeight.BackColor = Color.Red;
+                    RackHeight.BackColor = _incorrentInputColor;
                     string message = "Высота стеллажа введена неверно";
                     MessageBox.Show
                    (
@@ -116,5 +120,10 @@ namespace RackUI
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var Scheme = new Scheme();
+            Scheme.Show();
+        }
     }
 }
