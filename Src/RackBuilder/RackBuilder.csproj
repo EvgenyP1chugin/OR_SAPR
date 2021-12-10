@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rack\Rack.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="KAPITypes">
+      <HintPath>..\KAPI\KAPITypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6API5">
+      <HintPath>..\KAPI\Kompas6API5.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6Constants">
+      <HintPath>..\KAPI\Kompas6Constants.dll</HintPath>
+    </Reference>
+    <Reference Include="Kompas6Constants3D">
+      <HintPath>..\KAPI\Kompas6Constants3D.dll</HintPath>
+    </Reference>
+    <Reference Include="KompasAPI7">
+      <HintPath>..\KAPI\KompasAPI7.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

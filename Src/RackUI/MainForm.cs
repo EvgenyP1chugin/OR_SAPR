@@ -1,129 +1,139 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using RackBuilder;
+using Rack;
 
 namespace RackUI
 {
+    /// <summary>
+    /// публичный класс предназначенный для реализации интерфейса
+    /// </summary>
     public partial class MainForm : Form
     {
-        private 
-        Color _incorrentInputColor = Color.Red;
-        Color _correntInputColor = Color.White;
+       /// <summary>
+       ///  цвет, 
+       /// сигнализирующий о неверном вводе значения параметра
+       /// </summary>
+        private Color _incorrentInputColor = Color.Red;
 
+        /// <summary>
+        /// цвет, 
+        /// сообщающий о верно введенном значении параметра
+        /// </summary>
+        private Color _correntInputColor = Color.White;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private RackModelBuilder _builder;
+
+        /// <summary>
+        /// текущие параметры 3D-модели,
+        /// изначально им присваиваются значения по умолчанию
+        /// </summary>
+        private RackParameters _currentParameters = DefaultParameters;
+
+        /// <summary>
+        /// установка значений по умолчанию 
+        /// для проектируемой 3D-модели стеллажа 
+        /// </summary>
+        public static RackParameters DefaultParameters => 
+            new RackParameters(80, 10, 300, 1000, 300, 2);
+        
+        /// <summary>
+        /// инициализация главной формы
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// приватный метод, проверяющий введенное в textbox значение
+        /// </summary>
+        /// <param name="textBox">проверяемое поле ввода</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">исключение, в случае,
+        /// если введено не целове число</exception>
+        private int IntParse (TextBox textBox)
         {
             try
             {
-                if (int.Parse(RackHeight.Text) < 1000 || int.Parse(RackHeight.Text) > 3000)
-                {
-                    RackHeight.BackColor = _incorrentInputColor;
-                    string message = "Высота стеллажа введена неверно";
-                    MessageBox.Show
-                   (
-                       message,
-                       "Ошибка ввода",
-                       MessageBoxButtons.OK,
-                       MessageBoxIcon.Error
-                    );
-                }
+                int temp = Int32.Parse(textBox.Text);
+                textBox.BackColor = _correntInputColor;
+                return temp;
             }
             catch
             {
-                string message = "Высота стеллажа введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                RackHeight.BackColor = Color.Red;
+                textBox.BackColor = _incorrentInputColor;
+                throw new ArgumentException("Введено не целое число");
             }
+        }
 
-            if (double.Parse(RackDepth.Text) < 300 || double.Parse(RackDepth.Text) > 600)
+        /// <summary>
+        /// приватный метод, исполняется после нажатия кнопки "Построить"
+        /// запускает проверку на целоцисленность введенных значений,
+        /// проверяет наличие записей в словаре ошибок 
+        /// и выводит их с помощью оповещения в отдельном окне,
+        /// запускает функцию сборки проектируемой 3D-модели
+        /// </summary>
+        private void BuildButton_Click(object sender, EventArgs e)
+        {
+           
+            try
             {
-                string message = "Глубина стеллажа введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                RackDepth.BackColor = Color.Red;
+                _currentParameters =
+                   new RackParameters(IntParse(HeightFromFloor),
+                   IntParse(MaterialThickness),
+                   IntParse(RackDepth),
+                   IntParse(RackHeight),
+                   IntParse(RackWidth),
+                   IntParse(ShelvesNumber));
+
+                 if (_currentParameters.ErrorsDictionary.Count != 0)
+                 {
+                     string message = null;
+                     foreach (var param in 
+                         _currentParameters.ErrorsDictionary.Keys)
+                     {
+                         message += 
+                            _currentParameters.ErrorsDictionary[param]
+                            + "\n";
+                        string textboxname = param.ToString();
+                         TextBox textBox = 
+                            Controls.Find(textboxname,true)[0] 
+                            as TextBox;
+                         textBox.BackColor = _incorrentInputColor;
+                     }
+                         MessageBox.Show
+                        (
+                            message,
+                            "Ошибка ввода",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                         );
+                         return;
+                 }
+
+                _builder = new RackModelBuilder();
+                _builder.Assembly(_currentParameters);
             }
-
-            if (double.Parse(RackWidth.Text) < 300 || double.Parse(RackWidth.Text) > 800)
+            catch(ArgumentException ex)
             {
-                string message = "Ширина стеллажа введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                RackWidth.BackColor = Color.Red;
-            }
-
-            if (double.Parse(HeightFromFloor.Text) < 80 || double.Parse(HeightFromFloor.Text) > 100)
-            {
-                string message = "Высота от пола до нижней полки введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                HeightFromFloor.BackColor = Color.Red;
-            }
-
-            if (double.Parse(MaterialThickness.Text) < 10 || double.Parse(MaterialThickness.Text) > 20)
-            {
-                string message = "Толщина материала введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                MaterialThickness.BackColor = Color.Red;
-            }
-
-            if (double.Parse(ShelvesNumber.Text) > ((double.Parse(RackHeight.Text) - double.Parse(HeightFromFloor.Text) - 
-                double.Parse(MaterialThickness.Text) 
-                * double.Parse(ShelvesNumber.Text) / double.Parse(ShelvesNumber.Text))))
-            {
-                string message = "Толщина материала введена неверно";
-                MessageBox.Show
-               (
-                   message,
-                   "Ошибка ввода",
-                   MessageBoxButtons.OK,
-                   MessageBoxIcon.Error
-                );
-                ShelvesNumber.BackColor = Color.Red;
+                MessageBox.Show(ex.Message);
             }
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// вызов схемы проектируемой 3D-модели
+        /// </summary>
+        private void SchemeButton_Click(object sender, EventArgs e)
         {
             var Scheme = new Scheme();
             Scheme.Show();
         }
+
     }
 }
