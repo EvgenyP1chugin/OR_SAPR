@@ -116,41 +116,41 @@ namespace RackTests
                 $"Количество полок введено неверно.");
         }
 
-        [TestCase(Parameter.RackHeight,
+        [TestCase(ParametersType.RackHeight,
             "Значение параметра RackHeight не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки" +
                       " при вводе высоты стеллажа")]
-        [TestCase(Parameter.HeightFromFloor,
+        [TestCase(ParametersType.HeightFromFloor,
             "Значение параметра HeightFromFloor не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе высоты от пола до нижней полки")]
-        [TestCase(Parameter.RackDepth,
+        [TestCase(ParametersType.RackDepth,
             "Значение параметра RackDepth не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе глубины стеллажа")]
-        [TestCase(Parameter.RackWidth,
+        [TestCase(ParametersType.RackWidth,
             "Значение параметра RackWidth не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе ширины стеллажа")]
-        [TestCase(Parameter.ShelvesNumber,
+        [TestCase(ParametersType.ShelvesNumber,
             "Значение параметра ShelvesNumber не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе количества полок")]
-        [TestCase(Parameter.MaterialThickness,
+        [TestCase(ParametersType.MaterialThickness,
             "Значение параметра MaterialThickness не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе толщины материала")]
-        [TestCase(Parameter.ShelvesHeight,
+        [TestCase(ParametersType.ShelvesHeight,
             "Значение параметра ShelvesHeight не вошло в диапазон",
             TestName = "Позитивный - проверка совпадения текста ошибки " +
                        "при вводе высоты полки")]
         public void TestGetErrors_HaveErrorsValue
-            (Parameter parameter, string errorText)
+            (ParametersType parametersType, string errorText)
         {
             var rackParameters = 
                 new RackParameters(79, 9, 299, 999, 299, -1);
 
-            var error = rackParameters.ErrorsDictionary[parameter];
+            var error = rackParameters.ErrorsDictionary[parametersType];
             var actual = error;
 
             Assert.AreEqual

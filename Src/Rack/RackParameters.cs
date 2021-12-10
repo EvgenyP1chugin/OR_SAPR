@@ -47,8 +47,8 @@ namespace Rack
         /// <summary>
         /// словарь для хранения ошибок ввода
         /// </summary>
-        public Dictionary<Parameter, string> ErrorsDictionary { get; }
-            = new Dictionary<Parameter, string>();
+        public Dictionary<ParametersType, string> ErrorsDictionary { get; }
+            = new Dictionary<ParametersType, string>();
         
             
 
@@ -64,19 +64,10 @@ namespace Rack
             set
             {
                 //TODO: дублирование
-                try
-                {
-                    const int minValue = 80;
-                    const int maxValue = 100;
-                    Validator.CheckParametersValue(minValue, maxValue,
-                        value, Parameter.HeightFromFloor);
-                    _heightFromFloor = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(Parameter.HeightFromFloor, 
-                        ex.Message);
-                }
+                const int minValue = 80;
+                const int maxValue = 100;
+                SetValue(ref _heightFromFloor, value, minValue,
+                    maxValue, ParametersType.HeightFromFloor);
             }
         }
 
@@ -92,19 +83,10 @@ namespace Rack
             set
             {
                 //TODO: дублирование
-                try
-                {
-                    const int minValue = 10;
-                    const int maxValue = 20;
-                    Validator.CheckParametersValue(minValue, maxValue,
-                        value, Parameter.MaterialThickness);
-                    _materialThickness = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(Parameter.MaterialThickness,
-                        ex.Message);
-                }
+                const int minValue = 10;
+                const int maxValue = 20;
+                SetValue(ref _heightFromFloor, value, minValue,
+                    maxValue, ParametersType.MaterialThickness);
             }
         }
 
@@ -120,19 +102,10 @@ namespace Rack
             set
             {
                 //TODO: дублирование
-                try
-                {
-                    const int minValue = 300;
-                    const int maxValue = 600;
-                    Validator.CheckParametersValue(minValue, maxValue,
-                        value, Parameter.RackDepth);
-                    _rackDepth = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(Parameter.RackDepth,
-                        ex.Message);
-                }
+                const int minValue = 300;
+                const int maxValue = 600;
+                SetValue(ref _heightFromFloor, value, minValue,
+                    maxValue, ParametersType.RackDepth);
             }
         }
 
@@ -148,19 +121,10 @@ namespace Rack
             set
             {
                 //TODO: дублирование
-                try
-                {
-                    const int minValue = 1000;
-                    const int maxValue = 3000;
-                    Validator.CheckParametersValue(minValue, maxValue,
-                        value, Parameter.RackHeight);
-                    _rackHeight = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(Parameter.RackHeight,
-                        ex.Message);
-                }
+                const int minValue = 1000;
+                const int maxValue = 3000;
+                SetValue(ref _heightFromFloor, value, minValue,
+                    maxValue, ParametersType.RackHeight);
             }
         }
 
@@ -176,19 +140,10 @@ namespace Rack
             set
             {
                 //TODO: дублирование
-                try
-                {
-                    const int minValue = 300;
-                    const int maxValue = 800;
-                    Validator.CheckParametersValue(minValue, maxValue,
-                        value, Parameter.RackWidth);
-                    _rackWidth = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(Parameter.RackWidth,
-                        ex.Message);
-                }
+                const int minValue = 300;
+                const int maxValue = 800;
+                SetValue(ref _heightFromFloor, value, minValue,
+                    maxValue, ParametersType.RackWidth);
             }
         }
 
@@ -208,12 +163,12 @@ namespace Rack
                     const int minValue = 2;
                     Validator.CheckParametersValue(minValue, (_rackHeight -
                         _heightFromFloor - _materialThickness) % 200,
-                        value, Parameter.ShelvesNumber);
+                        value, ParametersType.ShelvesNumber);
                     _shelvesNumber = value;
                 }
                 catch (Exception ex)
                 {
-                    ErrorsDictionary.Add(Parameter.ShelvesNumber,
+                    ErrorsDictionary.Add(ParametersType.ShelvesNumber,
                         ex.Message);
                 }
             }
@@ -235,12 +190,12 @@ namespace Rack
                     const int minValue = 200;
                     Validator.CheckParametersValue(minValue, (_rackHeight -
                         _heightFromFloor - _materialThickness) / 2,
-                        value, Parameter.ShelvesHeight);
+                        value, ParametersType.ShelvesHeight);
                     _shelvesHeight = value;
                 }
                 catch (Exception ex)
                 {
-                    ErrorsDictionary.Add(Parameter.ShelvesHeight,
+                    ErrorsDictionary.Add(ParametersType.ShelvesHeight,
                         ex.Message);
                 }
 
@@ -265,10 +220,17 @@ namespace Rack
             }
         }
 
-         //TODO: RSDN
+        //TODO: RSDN
         /// <summary>
         /// конструктор класса, присваивающий значения
         /// </summary>
+        /// <param name="heightFromFloor">высота пространства
+        /// от пола до нижней полки </param>
+        /// <param name="materialThickness">толщина материала</param>
+        /// <param name="rackDepth">глубина стеллажа</param>
+        /// <param name="rackHeight">высота стеллажа</param>
+        /// <param name="rackWidth">ширина стеллажа</param>
+        /// <param name="shelvesNumber">кол-во полок</param>
         public RackParameters(int heightFromFloor, int materialThickness,
            int rackDepth, int rackHeight, int rackWidth, int shelvesNumber) 
         {
@@ -280,6 +242,31 @@ namespace Rack
             RackWidth = rackWidth;
             ShelvesNumber = shelvesNumber;
             ShelvesHeight = SetShelvesHeight();
+        }
+
+        /// <summary>
+        /// установка значения
+        /// </summary>
+        /// <param name="property">зачение которое будет занесено</param>
+        /// <param name="value">введенное значение</param>
+        /// <param name="minValue">минимальное значение</param>
+        /// <param name="maxValue">максимальное значение</param>
+        /// <param name="parameter">тип параметра</param>
+        private void SetValue(ref int property, int value,
+            int minValue, int maxValue, ParametersType parameter)
+        {
+            try
+            {
+
+                Validator.CheckParametersValue(minValue, maxValue, value, parameter);
+                property = value;
+            }
+            catch (Exception ex)
+            {
+                ErrorsDictionary.Add(parameter,
+                    ex.Message);
+            }
+           
         }
 
     }

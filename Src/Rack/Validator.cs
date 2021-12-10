@@ -14,16 +14,16 @@ namespace Rack
         /// <param name="minValue">минимальное значение</param>
         /// <param name="maxValue">максимальное значение</param>
         /// <param name="value">проверяемое значение</param>
-        /// <param name="parameter">параметр проверяемого значения</param>
+        /// <param name="parametersType">параметр проверяемого значения</param>
         /// <exception cref="ArgumentException">исключение вызываемое при 
         /// несоответсвии заданного значения диапазону</exception>
         public static void CheckParametersValue(int minValue, 
-            int maxValue, int value, Parameter parameter)
+            int maxValue, int value, ParametersType parametersType)
         {
             if (value < minValue || value > maxValue)
             {
                 throw new ArgumentException
-                    ($"Значение параметра {parameter}" +
+                    ($"Значение параметра {parametersType}" +
                     $" не вошло в диапазон");
             }
         }

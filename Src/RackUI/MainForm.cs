@@ -11,18 +11,12 @@ namespace RackUI
     /// </summary>
     public partial class MainForm : Form
     {
+
        /// <summary>
        ///  цвет, 
        /// сигнализирующий о неверном вводе значения параметра
        /// </summary>
         private Color _incorrentInputColor = Color.Red;
-
-       //TODO Убрать в метод
-        /// <summary>
-        /// цвет, 
-        /// сообщающий о верно введенном значении параметра
-        /// </summary>
-        private Color _correntInputColor = Color.White;
 
         /// <summary>
         /// 
@@ -61,8 +55,9 @@ namespace RackUI
         {
             try
             {
+                Color correntInputColor = Color.White;
                 int temp = Int32.Parse(textBox.Text);
-                textBox.BackColor = _correntInputColor;
+                textBox.BackColor = correntInputColor;
                 return temp;
             }
             catch
@@ -133,8 +128,8 @@ namespace RackUI
         private void SchemeButton_Click(object sender, EventArgs e)
         {
             //TODO: RSDN
-            var Scheme = new Scheme();
-            Scheme.Show();
+            var scheme = new Scheme();
+            scheme.Show();
         }
     }
 }

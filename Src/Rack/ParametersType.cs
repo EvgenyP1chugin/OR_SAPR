@@ -3,10 +3,10 @@ namespace Rack
 {
     //TODO naming
     /// <summary>
-    /// перечисление параметров 
+    /// перечисление типов параметров 
     /// проектируемой 3D-модели стеллажа
     /// </summary>
-    public enum Parameter
+    public enum ParametersType
     {
         /// <summary>
         /// высота пространства от пола до нижней полки
@@ -42,6 +42,5 @@ namespace Rack
         /// количество полок 
         /// </summary>
         ShelvesNumber
-
     }
 }
