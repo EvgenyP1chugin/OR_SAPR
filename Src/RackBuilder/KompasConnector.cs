@@ -6,6 +6,7 @@ using RackBuilder.Service;
 
 namespace RackBuilder
 {
+     //TODO: RSDN
     ///<summary>
     /// класс для работы с Компас 3D
     /// </summary>

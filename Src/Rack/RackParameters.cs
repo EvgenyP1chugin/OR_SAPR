@@ -63,6 +63,7 @@ namespace Rack
 
             set
             {
+                //TODO: дублирование
                 try
                 {
                     const int minValue = 80;
@@ -90,6 +91,7 @@ namespace Rack
 
             set
             {
+                //TODO: дублирование
                 try
                 {
                     const int minValue = 10;
@@ -117,6 +119,7 @@ namespace Rack
 
             set
             {
+                //TODO: дублирование
                 try
                 {
                     const int minValue = 300;
@@ -144,6 +147,7 @@ namespace Rack
 
             set
             {
+                //TODO: дублирование
                 try
                 {
                     const int minValue = 1000;
@@ -171,6 +175,7 @@ namespace Rack
 
             set
             {
+                //TODO: дублирование
                 try
                 {
                     const int minValue = 300;
@@ -260,6 +265,7 @@ namespace Rack
             }
         }
 
+         //TODO: RSDN
         /// <summary>
         /// конструктор класса, присваивающий значения
         /// </summary>

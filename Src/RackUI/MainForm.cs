@@ -17,6 +17,7 @@ namespace RackUI
        /// </summary>
         private Color _incorrentInputColor = Color.Red;
 
+       //TODO Убрать в метод
         /// <summary>
         /// цвет, 
         /// сообщающий о верно введенном значении параметра
@@ -131,6 +132,7 @@ namespace RackUI
         /// </summary>
         private void SchemeButton_Click(object sender, EventArgs e)
         {
+            //TODO: RSDN
             var Scheme = new Scheme();
             Scheme.Show();
         }
