@@ -6,11 +6,24 @@ using RackBuilder.Service;
 
 namespace RackBuilder
 {
+    ///<summary>
+    /// класс для работы с Компас 3D
+    /// </summary>
     class KompasConnector
     {
+        ///<summary>
+        /// объект Компас 3D
+        /// </summary>
         public KompasObject KompasObject { get; }
+
+        ///<summary>
+        /// часть документа
+        /// </summary>
         public ksPart Part { get; set; }
 
+        ///<summary>
+        /// подключение САПР Компас 3D
+        /// </summary>
         public KompasConnector()
         {
             var progId = "KOMPAS.Application.5";
@@ -29,7 +42,9 @@ namespace RackBuilder
             KompasObject.ActivateControllerAPI();
         }
 
-
+        ///<summary>
+        /// создание новой части документа Компас 3D
+        /// </summary>
         public void GetNewPart()
         {
             var ksDoc = (ksDocument3D)KompasObject.Document3D();
