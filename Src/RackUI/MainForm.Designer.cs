@@ -46,6 +46,7 @@ namespace RackUI
             this.SchemeButton = new System.Windows.Forms.Button();
             this.ShelvesHeight = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -96,7 +97,7 @@ namespace RackUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 157);
+            this.label6.Location = new System.Drawing.Point(12, 154);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 15);
             this.label6.TabIndex = 11;
@@ -183,11 +184,21 @@ namespace RackUI
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 169);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(265, 15);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "(от 2 до 13 в зависимости от высоты стеллажа)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 248);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.ShelvesHeight);
             this.Controls.Add(this.SchemeButton);
             this.Controls.Add(this.ShelvesNumber);
@@ -228,6 +239,7 @@ namespace RackUI
         private System.Windows.Forms.Button SchemeButton;
         private System.Windows.Forms.TextBox ShelvesHeight;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label7;
     }
 }
 

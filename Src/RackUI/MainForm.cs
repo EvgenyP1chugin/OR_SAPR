@@ -134,6 +134,5 @@ namespace RackUI
             var Scheme = new Scheme();
             Scheme.Show();
         }
-
     }
 }
