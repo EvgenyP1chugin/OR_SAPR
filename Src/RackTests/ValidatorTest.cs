@@ -1,4 +1,5 @@
-﻿using Rack;
+﻿using System;
+using Rack;
 using NUnit.Framework;
 
 namespace RackTests

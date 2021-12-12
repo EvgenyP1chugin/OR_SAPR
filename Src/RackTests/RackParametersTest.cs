@@ -16,13 +16,13 @@ namespace RackTests
             new RackParameters(80, 10, 300, 1000, 300, 2);
 
         [TestCase(1000, TestName = "Позитивный - ввод высоты стеллажа")]
-        public void RackHeight_SetPositive(int correctValue)
+        public void RackHeight_SetPositive( int correctValue)
         {
             var rackParameters = RackParameters;
             var value = correctValue;
             var expected = correctValue;
 
-            rackParameters.RackHeight = value;
+            rackParameters.RackHeight= value;
             var actual = rackParameters.RackHeight;
 
             Assert.AreEqual(expected, actual,
@@ -170,9 +170,6 @@ namespace RackTests
 
             Assert.IsEmpty(actual, "Словарь не пуст");
         }
-
-
-
 
     }
 }

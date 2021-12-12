@@ -85,7 +85,7 @@ namespace Rack
                 //TODO: дублирование
                 const int minValue = 10;
                 const int maxValue = 20;
-                SetValue(ref _heightFromFloor, value, minValue,
+                SetValue(ref _materialThickness, value, minValue,
                     maxValue, ParametersType.MaterialThickness);
             }
         }
@@ -104,7 +104,7 @@ namespace Rack
                 //TODO: дублирование
                 const int minValue = 300;
                 const int maxValue = 600;
-                SetValue(ref _heightFromFloor, value, minValue,
+                SetValue(ref _rackDepth, value, minValue,
                     maxValue, ParametersType.RackDepth);
             }
         }
@@ -123,7 +123,7 @@ namespace Rack
                 //TODO: дублирование
                 const int minValue = 1000;
                 const int maxValue = 3000;
-                SetValue(ref _heightFromFloor, value, minValue,
+                SetValue(ref _rackHeight, value, minValue,
                     maxValue, ParametersType.RackHeight);
             }
         }
@@ -142,7 +142,7 @@ namespace Rack
                 //TODO: дублирование
                 const int minValue = 300;
                 const int maxValue = 800;
-                SetValue(ref _heightFromFloor, value, minValue,
+                SetValue(ref _rackWidth, value, minValue,
                     maxValue, ParametersType.RackWidth);
             }
         }
@@ -252,7 +252,7 @@ namespace Rack
         /// <param name="minValue">минимальное значение</param>
         /// <param name="maxValue">максимальное значение</param>
         /// <param name="parameter">тип параметра</param>
-        private void SetValue(ref int property, int value,
+        public void SetValue(ref int property, int value,
             int minValue, int maxValue, ParametersType parameter)
         {
             try
