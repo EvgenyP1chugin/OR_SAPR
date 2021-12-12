@@ -119,7 +119,7 @@ namespace RackUI
             this.RackHeight.Name = "RackHeight";
             this.RackHeight.Size = new System.Drawing.Size(100, 23);
             this.RackHeight.TabIndex = 13;
-            this.RackHeight.Text = "1000";
+            this.RackHeight.Text = "2000";
             // 
             // RackDepth
             // 
@@ -127,7 +127,7 @@ namespace RackUI
             this.RackDepth.Name = "RackDepth";
             this.RackDepth.Size = new System.Drawing.Size(100, 23);
             this.RackDepth.TabIndex = 14;
-            this.RackDepth.Text = "300";
+            this.RackDepth.Text = "450";
             // 
             // RackWidth
             // 
@@ -135,7 +135,7 @@ namespace RackUI
             this.RackWidth.Name = "RackWidth";
             this.RackWidth.Size = new System.Drawing.Size(100, 23);
             this.RackWidth.TabIndex = 15;
-            this.RackWidth.Text = "300";
+            this.RackWidth.Text = "550";
             // 
             // HeightFromFloor
             // 
@@ -143,7 +143,7 @@ namespace RackUI
             this.HeightFromFloor.Name = "HeightFromFloor";
             this.HeightFromFloor.Size = new System.Drawing.Size(100, 23);
             this.HeightFromFloor.TabIndex = 16;
-            this.HeightFromFloor.Text = "80";
+            this.HeightFromFloor.Text = "90";
             // 
             // MaterialThickness
             // 
@@ -151,7 +151,7 @@ namespace RackUI
             this.MaterialThickness.Name = "MaterialThickness";
             this.MaterialThickness.Size = new System.Drawing.Size(100, 23);
             this.MaterialThickness.TabIndex = 17;
-            this.MaterialThickness.Text = "10";
+            this.MaterialThickness.Text = "15";
             // 
             // ShelvesNumber
             // 
@@ -159,7 +159,7 @@ namespace RackUI
             this.ShelvesNumber.Name = "ShelvesNumber";
             this.ShelvesNumber.Size = new System.Drawing.Size(100, 23);
             this.ShelvesNumber.TabIndex = 18;
-            this.ShelvesNumber.Text = "2";
+            this.ShelvesNumber.Text = "6";
             // 
             // SchemeButton
             // 
