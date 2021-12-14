@@ -47,6 +47,12 @@ namespace RackUI
             this.ShelvesHeight = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label7 = new System.Windows.Forms.Label();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -105,7 +111,7 @@ namespace RackUI
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(333, 204);
+            this.BuildButton.Location = new System.Drawing.Point(333, 280);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(86, 29);
             this.BuildButton.TabIndex = 12;
@@ -163,7 +169,7 @@ namespace RackUI
             // 
             // SchemeButton
             // 
-            this.SchemeButton.Location = new System.Drawing.Point(13, 204);
+            this.SchemeButton.Location = new System.Drawing.Point(12, 280);
             this.SchemeButton.Name = "SchemeButton";
             this.SchemeButton.Size = new System.Drawing.Size(89, 29);
             this.SchemeButton.TabIndex = 19;
@@ -193,11 +199,74 @@ namespace RackUI
             this.label7.TabIndex = 21;
             this.label7.Text = "(от 2 до 13 в зависимости от высоты стеллажа)";
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(163, 201);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(56, 19);
+            this.radioButton2.TabIndex = 23;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "снизу";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(13, 201);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(138, 19);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "Объединение полок";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(225, 201);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(62, 19);
+            this.radioButton3.TabIndex = 25;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "сверху";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(333, 228);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 27;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 236);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(207, 15);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "Количество полок для объединения";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 251);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(164, 15);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "(от 2х до введенного кол-ва)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 248);
+            this.ClientSize = new System.Drawing.Size(440, 321);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ShelvesHeight);
             this.Controls.Add(this.SchemeButton);
@@ -240,6 +309,12 @@ namespace RackUI
         private System.Windows.Forms.TextBox ShelvesHeight;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
     }
 }
 
