@@ -15,106 +15,39 @@ namespace RackTests
         private static RackParameters RackParameters =>
             new RackParameters(80, 10, 300, 1000, 300, 2);
 
-        [TestCase(1000, TestName = "Позитивный - ввод высоты стеллажа")]
-        public void RackHeight_SetPositive( int correctValue)
+        [TestCase(10,ParametersType.MaterialThickness, TestName =
+            "Позитивный - ввод толщины материала")]
+        [TestCase(80,ParametersType.HeightFromFloor, TestName = 
+            "Позитивный - ввод высоты пространства" +
+            " от пола до нижней полки")]
+        [TestCase(1000,ParametersType.RackHeight , TestName =
+            "Позитивный - ввод высоты стеллажа")]
+        [TestCase(300,ParametersType.RackDepth, TestName =
+            "Позитивный - ввод глубины стеллажа")]
+        [TestCase(300,ParametersType.RackWidth, TestName =
+            "Позитивный - ввод ширины стеллажа")]
+        [TestCase(2,ParametersType.ShelvesNumber, TestName =
+            "Позитивный - ввод кол-ва полок")]
+        [TestCase(200,ParametersType.ShelvesHeight, TestName =
+            "Позитивный - ввод высоты полок")]
+        public void RackParameters_SetPositive( int correctValue,
+            ParametersType parameter)
         {
             var rackParameters = RackParameters;
             var value = correctValue;
             var expected = correctValue;
 
-            rackParameters.RackHeight= value;
-            var actual = rackParameters.RackHeight;
+            var propertyInfo = typeof(RackParameters).
+                GetProperty(parameter.ToString());
+            propertyInfo.SetValue(rackParameters, value);
+
+            var actual = propertyInfo.GetValue(rackParameters);
 
             Assert.AreEqual(expected, actual,
-                $"Значение высоты стеллажа введено неверно.");
+                $"Значение {parameter} введено неверно.");
 
         }
 
-        [TestCase(80, TestName = "Позитивный - ввод высоты пространства" +
-                                 " от пола до нижней полки")]
-        public void HeightFromFloor_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.HeightFromFloor = value;
-            var actual = rackParameters.HeightFromFloor;
-
-            Assert.AreEqual(expected, actual,
-                $"Значение высоты пространства " +
-                $"от пола до нижней полки введено неверно.");
-        }
-
-        [TestCase(10, TestName = "Позитивный - ввод толщины материала")]
-        public void MaterialThickness_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.MaterialThickness = value;
-            var actual = rackParameters.MaterialThickness;
-
-            Assert.AreEqual(expected, actual,
-                $"Значение толщины материала введено неверно.");
-        }
-
-        [TestCase(300, TestName = "Позитивный - ввод глубины стеллажа")]
-        public void RackDepth_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.RackDepth = value;
-            var actual = rackParameters.RackDepth;
-
-            Assert.AreEqual(expected, actual,
-                $"Значение глубины стеллажа введено неверно.");
-        }
-
-        [TestCase(300, TestName = "Позитивный - ввод ширины стеллажа")]
-        public void RackWidth_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.RackWidth = value;
-            var actual = rackParameters.RackWidth;
-
-            Assert.AreEqual(expected, actual,
-                $"Значение ширины стеллажа введено неверно.");
-        }
-
-        [TestCase(2, TestName = "Позитивный - ввод кол-ва полок")]
-        public void ShelvesNumber_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.ShelvesNumber = value;
-            var actual = rackParameters.ShelvesNumber;
-
-            Assert.AreEqual(expected, actual,
-                $"Количество полок введено неверно.");
-        }
-
-        [TestCase(200, TestName = "Позитивный - ввод высоты полок")]
-        public void ShelvesHeight_SetPositive(int correctValue)
-        {
-            var rackParameters = RackParameters;
-            var value = correctValue;
-            var expected = correctValue;
-
-            rackParameters.ShelvesHeight = value;
-            var actual = rackParameters.ShelvesHeight;
-
-            Assert.AreEqual(expected, actual,
-                $"Количество полок введено неверно.");
-        }
 
         [TestCase(ParametersType.RackHeight,
             "Значение параметра RackHeight не вошло в диапазон",
