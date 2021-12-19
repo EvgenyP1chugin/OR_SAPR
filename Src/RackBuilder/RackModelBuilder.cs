@@ -34,7 +34,8 @@ namespace RackBuilder
             BuildShelves(parameters.ShelvesNumber, 
                 parameters.ShelvesHeight, 
                 parameters.MaterialThickness, parameters.RackWidth, 
-                parameters.CombiningType, parameters.NumberCombinedShelves);
+                parameters.CombiningShelvesType,
+                parameters.NumberCombinedShelves);
 
         }
 
@@ -104,7 +105,7 @@ namespace RackBuilder
         }
        
         /// <summary>
-        ///приватный метод, отвечающий за
+        /// приватный метод, отвечающий за
         /// построение выдавливаемого пространства полок
         /// проектируемой 3D-модели стеллажа
         /// </summary>
@@ -127,12 +128,15 @@ namespace RackBuilder
                 var rectangleParam = 
                    (ksRectangleParam)_connector.KompasObject.GetParamStruct
                 ((short)StructType2DEnum.ko_RectangleParam);
-                var rectangleHeight = shelvesHeight - materialThickness;
+                var rectangleHeight = 
+                    shelvesHeight - materialThickness;
+
                 switch (type)
                 {
                     case CombiningShelvesType.CombiningUp:
                     {
-                        if (numberCombinedShelves != 0 && i < numberCombinedShelves)
+                        if (numberCombinedShelves != 0 &&
+                            i < numberCombinedShelves)
                         {
                             rectangleHeight = shelvesHeight;
                         }
@@ -140,14 +144,16 @@ namespace RackBuilder
                     }
                     case CombiningShelvesType.CombiningDown:
                     {
-                        if (numberCombinedShelves != 0 && i != shelvesNumber-1 && 
-                            i >= shelvesNumber - numberCombinedShelves  )
+                        if (numberCombinedShelves != 0 &&
+                            i != shelvesNumber-1 && 
+                            i >= shelvesNumber - numberCombinedShelves)
                         {
                             rectangleHeight = shelvesHeight;
                         }
                         break;
                     }
                 }
+
                 rectangleParam.x = materialThickness;
                 rectangleParam.y = i * shelvesHeight + materialThickness;
                 rectangleParam.ang = 0;

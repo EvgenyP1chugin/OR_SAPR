@@ -34,7 +34,8 @@ namespace RackUI
         /// для проектируемой 3D-модели стеллажа 
         /// </summary>
         public static RackParameters DefaultParameters => 
-            new RackParameters(80, 10, 300, 1000, 300, 2);
+            new RackParameters(80, 10, 300, 1000, 300, 2, 1,
+                CombiningShelvesType.NoneCombining);
         
         /// <summary>
         /// инициализация главной формы
@@ -79,32 +80,27 @@ namespace RackUI
            
             try
             {
-                if (CombiningShelvesCheckBox.Checked)
+                CombiningShelvesType combiningType = 
+                    CombiningShelvesType.NoneCombining;
+
+                if (CombiningShelvesUpRadioButton.Checked)
                 {
-                    CombiningShelvesType type = 
-                        CombiningShelvesUpRadioButton.Checked?
-                        CombiningShelvesType.CombiningUp:
-                        CombiningShelvesType.CombiningDown;
-                    _currentParameters =
-                        new RackParameters(IntParse(HeightFromFloor),
-                            IntParse(MaterialThickness),
-                            IntParse(RackDepth),
-                            IntParse(RackHeight),
-                            IntParse(RackWidth),
-                            IntParse(ShelvesNumber),
-                            IntParse(NumberCombinedShelves),
-                            type);
+                    combiningType = CombiningShelvesType.CombiningUp;
                 }
-                else
+                else if(CombiningShelvesDownRadioButton.Checked)
                 {
-                    _currentParameters =
-                        new RackParameters(IntParse(HeightFromFloor),
-                            IntParse(MaterialThickness),
-                            IntParse(RackDepth),
-                            IntParse(RackHeight),
-                            IntParse(RackWidth),
-                            IntParse(ShelvesNumber));
+                    combiningType = CombiningShelvesType.CombiningDown;
                 }
+
+                _currentParameters =
+                    new RackParameters(IntParse(HeightFromFloor),
+                        IntParse(MaterialThickness),
+                        IntParse(RackDepth),
+                        IntParse(RackHeight),
+                        IntParse(RackWidth),
+                        IntParse(ShelvesNumber),
+                        IntParse(NumberCombinedShelves),
+                        combiningType);
 
                 if (_currentParameters.ErrorsDictionary.Count != 0)
                 {
@@ -166,7 +162,7 @@ namespace RackUI
             else
             {
                 EnableCombining(false);
-                NumberCombinedShelves.Text = null;
+                NumberCombinedShelves.Text = "1";
             }
         }
 
@@ -185,6 +181,35 @@ namespace RackUI
             CombiningShelvesLabelUp.Enabled = isEnabled;
             CombiningShelvesDownRadioButton.Checked = isEnabled;
             CombiningShelvesUpRadioButton.Checked = isEnabled;
+        }
+
+        /// <summary>
+        /// метод подсчета актуального кол-ва полок
+        /// для объединения
+        /// </summary>
+        private void ShelvesNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(ShelvesNumber.Text,out int result) )
+            {
+                CombiningShelvesLabelDown.Text = 
+                    $"(от 1 до {result - 1})";
+            }
+            else
+            {
+                CombiningShelvesLabelDown.Text = $"(от 1 до n)";
+            }
+        }
+        /// <summary>
+        /// метод подсчета актуального количества полок
+        /// </summary>
+        private void MaterialThickness_TextChanged(object sender, EventArgs e)
+        {
+            int rackHeight = Int32.Parse(RackHeight.Text);
+            int heightFromFloor = Int32.Parse(HeightFromFloor.Text);
+            int materialThickness = Int32.Parse(MaterialThickness.Text);
+            int shelvesNumber =
+                (rackHeight - heightFromFloor - materialThickness) / 200;
+            label7.Text = $"(от 2 до " + $"{shelvesNumber - 1})";
         }
     }
 }

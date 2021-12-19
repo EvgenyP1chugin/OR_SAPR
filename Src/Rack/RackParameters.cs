@@ -47,13 +47,7 @@ namespace Rack
         /// <summary>
         /// Количество полок, которые будут объединены
         /// </summary>
-        private int _numberCombinedShelves = 0;
-
-        /// <summary>
-        /// Тип объединения полок
-        /// </summary>
-        private CombiningShelvesType _combiningType = 
-            CombiningShelvesType.NoneCombining;
+        private int _numberCombinedShelves;
 
         /// <summary>
         /// словарь для хранения ошибок ввода
@@ -172,7 +166,7 @@ namespace Rack
                 const int minValue = 2; 
                 int maxValue = (_rackHeight 
                                 - _heightFromFloor 
-                                - _materialThickness) % 200;
+                                - _materialThickness) / 200;
                 SetValue(ref _shelvesNumber, value, minValue,
                     maxValue, ParametersType.ShelvesNumber);
               
@@ -209,15 +203,15 @@ namespace Rack
             
             set
             {
-                const int minValue = 2;
-                int maxValue = ShelvesNumber - 1;
+                const int minValue = 1;
+                int maxValue = _shelvesNumber - 1;
                 SetValue(ref _numberCombinedShelves, value, 
                     minValue, maxValue, 
                     ParametersType.NumberCombinedShelves);
             }
         }
        
-        public CombiningShelvesType CombiningType { get; set; }
+        public CombiningShelvesType CombiningShelvesType { get; set; }
        
         /// <summary>
         /// метод, рассчитывающий расстояние между полками, 
@@ -236,35 +230,22 @@ namespace Rack
                 return 0;
             }
         }
-
-        //TODO: RSDN
         /// <summary>
         /// конструктор класса, присваивающий значения
         /// </summary>
         /// <param name="heightFromFloor">высота пространства
-        /// от пола до нижней полки </param>
+        /// от пола до нижней полки</param>
         /// <param name="materialThickness">толщина материала</param>
         /// <param name="rackDepth">глубина стеллажа</param>
         /// <param name="rackHeight">высота стеллажа</param>
         /// <param name="rackWidth">ширина стеллажа</param>
-        /// <param name="shelvesNumber">кол-во полок</param>
-        public RackParameters(int heightFromFloor, int materialThickness,
-           int rackDepth, int rackHeight, int rackWidth, int shelvesNumber) 
-        {
-            ErrorsDictionary.Clear();
-            HeightFromFloor = heightFromFloor;
-            MaterialThickness = materialThickness;
-            RackDepth = rackDepth;
-            RackHeight = rackHeight;
-            RackWidth = rackWidth;
-            ShelvesNumber = shelvesNumber;
-            ShelvesHeight = SetShelvesHeight();
-        }
-
+        /// <param name="shelvesNumber">количество полок</param>
+        /// <param name="numberCombinedShelves">кол-во полок для объединения</param>
+        /// <param name="combiningType">тип объединения</param>
         public RackParameters(int heightFromFloor, int materialThickness,
             int rackDepth, int rackHeight, int rackWidth,
             int shelvesNumber, int numberCombinedShelves,
-            CombiningShelvesType type)
+            CombiningShelvesType combiningType)
         {
             ErrorsDictionary.Clear();
             HeightFromFloor = heightFromFloor;
@@ -275,7 +256,7 @@ namespace Rack
             ShelvesNumber = shelvesNumber;
             NumberCombinedShelves = numberCombinedShelves;
             ShelvesHeight = SetShelvesHeight();
-            CombiningType = type;
+            CombiningShelvesType = combiningType;
         }
 
         /// <summary>

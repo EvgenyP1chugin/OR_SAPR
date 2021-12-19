@@ -158,6 +158,7 @@ namespace RackUI
             this.MaterialThickness.Size = new System.Drawing.Size(100, 23);
             this.MaterialThickness.TabIndex = 17;
             this.MaterialThickness.Text = "15";
+            this.MaterialThickness.TextChanged += new System.EventHandler(this.MaterialThickness_TextChanged);
             // 
             // ShelvesNumber
             // 
@@ -166,6 +167,7 @@ namespace RackUI
             this.ShelvesNumber.Size = new System.Drawing.Size(100, 23);
             this.ShelvesNumber.TabIndex = 18;
             this.ShelvesNumber.Text = "6";
+            this.ShelvesNumber.TextChanged += new System.EventHandler(this.ShelvesNumber_TextChanged);
             // 
             // SchemeButton
             // 
@@ -195,9 +197,9 @@ namespace RackUI
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 169);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(265, 15);
+            this.label7.Size = new System.Drawing.Size(61, 15);
             this.label7.TabIndex = 21;
-            this.label7.Text = "(от 2 до 13 в зависимости от высоты стеллажа)";
+            this.label7.Text = "(от 2 до 8)";
             // 
             // CombiningShelvesDownRadioButton
             // 
@@ -241,6 +243,7 @@ namespace RackUI
             this.NumberCombinedShelves.Name = "NumberCombinedShelves";
             this.NumberCombinedShelves.Size = new System.Drawing.Size(100, 23);
             this.NumberCombinedShelves.TabIndex = 27;
+            this.NumberCombinedShelves.Text = "1";
             // 
             // CombiningShelvesLabelUp
             // 
@@ -258,9 +261,9 @@ namespace RackUI
             this.CombiningShelvesLabelDown.Enabled = false;
             this.CombiningShelvesLabelDown.Location = new System.Drawing.Point(12, 238);
             this.CombiningShelvesLabelDown.Name = "CombiningShelvesLabelDown";
-            this.CombiningShelvesLabelDown.Size = new System.Drawing.Size(164, 15);
+            this.CombiningShelvesLabelDown.Size = new System.Drawing.Size(61, 15);
             this.CombiningShelvesLabelDown.TabIndex = 30;
-            this.CombiningShelvesLabelDown.Text = "(от 2х до введенного кол-ва)";
+            this.CombiningShelvesLabelDown.Text = "(от 1 до 5)";
             // 
             // MainForm
             // 
