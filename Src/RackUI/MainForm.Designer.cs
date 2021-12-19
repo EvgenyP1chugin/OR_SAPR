@@ -47,12 +47,12 @@ namespace RackUI
             this.ShelvesHeight = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label7 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.CombiningShelvesDownRadioButton = new System.Windows.Forms.RadioButton();
+            this.CombiningShelvesCheckBox = new System.Windows.Forms.CheckBox();
+            this.CombiningShelvesUpRadioButton = new System.Windows.Forms.RadioButton();
+            this.NumberCombinedShelves = new System.Windows.Forms.TextBox();
+            this.CombiningShelvesLabelUp = new System.Windows.Forms.Label();
+            this.CombiningShelvesLabelDown = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -111,7 +111,7 @@ namespace RackUI
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(333, 280);
+            this.BuildButton.Location = new System.Drawing.Point(333, 270);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(86, 29);
             this.BuildButton.TabIndex = 12;
@@ -169,9 +169,9 @@ namespace RackUI
             // 
             // SchemeButton
             // 
-            this.SchemeButton.Location = new System.Drawing.Point(12, 280);
+            this.SchemeButton.Location = new System.Drawing.Point(12, 270);
             this.SchemeButton.Name = "SchemeButton";
-            this.SchemeButton.Size = new System.Drawing.Size(89, 29);
+            this.SchemeButton.Size = new System.Drawing.Size(87, 29);
             this.SchemeButton.TabIndex = 19;
             this.SchemeButton.Text = "Схема";
             this.SchemeButton.UseVisualStyleBackColor = true;
@@ -199,74 +199,80 @@ namespace RackUI
             this.label7.TabIndex = 21;
             this.label7.Text = "(от 2 до 13 в зависимости от высоты стеллажа)";
             // 
-            // radioButton2
+            // CombiningShelvesDownRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(163, 201);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(56, 19);
-            this.radioButton2.TabIndex = 23;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "снизу";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.CombiningShelvesDownRadioButton.AutoSize = true;
+            this.CombiningShelvesDownRadioButton.Enabled = false;
+            this.CombiningShelvesDownRadioButton.Location = new System.Drawing.Point(163, 200);
+            this.CombiningShelvesDownRadioButton.Name = "CombiningShelvesDownRadioButton";
+            this.CombiningShelvesDownRadioButton.Size = new System.Drawing.Size(56, 19);
+            this.CombiningShelvesDownRadioButton.TabIndex = 23;
+            this.CombiningShelvesDownRadioButton.TabStop = true;
+            this.CombiningShelvesDownRadioButton.Text = "снизу";
+            this.CombiningShelvesDownRadioButton.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // CombiningShelvesCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 201);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(138, 19);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "Объединение полок";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.CombiningShelvesCheckBox.AutoSize = true;
+            this.CombiningShelvesCheckBox.Location = new System.Drawing.Point(13, 201);
+            this.CombiningShelvesCheckBox.Name = "CombiningShelvesCheckBox";
+            this.CombiningShelvesCheckBox.Size = new System.Drawing.Size(138, 19);
+            this.CombiningShelvesCheckBox.TabIndex = 24;
+            this.CombiningShelvesCheckBox.Text = "Объединение полок";
+            this.CombiningShelvesCheckBox.UseVisualStyleBackColor = true;
+            this.CombiningShelvesCheckBox.CheckedChanged += new System.EventHandler(this.CombiningShelvesCheckBox_CheckedChanged);
             // 
-            // radioButton3
+            // CombiningShelvesUpRadioButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(225, 201);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(62, 19);
-            this.radioButton3.TabIndex = 25;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "сверху";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.CombiningShelvesUpRadioButton.AutoSize = true;
+            this.CombiningShelvesUpRadioButton.Enabled = false;
+            this.CombiningShelvesUpRadioButton.Location = new System.Drawing.Point(225, 200);
+            this.CombiningShelvesUpRadioButton.Name = "CombiningShelvesUpRadioButton";
+            this.CombiningShelvesUpRadioButton.Size = new System.Drawing.Size(62, 19);
+            this.CombiningShelvesUpRadioButton.TabIndex = 25;
+            this.CombiningShelvesUpRadioButton.TabStop = true;
+            this.CombiningShelvesUpRadioButton.Text = "сверху";
+            this.CombiningShelvesUpRadioButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // NumberCombinedShelves
             // 
-            this.textBox1.Location = new System.Drawing.Point(333, 228);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 27;
+            this.NumberCombinedShelves.Enabled = false;
+            this.NumberCombinedShelves.Location = new System.Drawing.Point(333, 223);
+            this.NumberCombinedShelves.Name = "NumberCombinedShelves";
+            this.NumberCombinedShelves.Size = new System.Drawing.Size(100, 23);
+            this.NumberCombinedShelves.TabIndex = 27;
             // 
-            // label9
+            // CombiningShelvesLabelUp
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 236);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(207, 15);
-            this.label9.TabIndex = 29;
-            this.label9.Text = "Количество полок для объединения";
+            this.CombiningShelvesLabelUp.AutoSize = true;
+            this.CombiningShelvesLabelUp.Enabled = false;
+            this.CombiningShelvesLabelUp.Location = new System.Drawing.Point(12, 223);
+            this.CombiningShelvesLabelUp.Name = "CombiningShelvesLabelUp";
+            this.CombiningShelvesLabelUp.Size = new System.Drawing.Size(207, 15);
+            this.CombiningShelvesLabelUp.TabIndex = 29;
+            this.CombiningShelvesLabelUp.Text = "Количество полок для объединения";
             // 
-            // label8
+            // CombiningShelvesLabelDown
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 251);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(164, 15);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "(от 2х до введенного кол-ва)";
+            this.CombiningShelvesLabelDown.AutoSize = true;
+            this.CombiningShelvesLabelDown.Enabled = false;
+            this.CombiningShelvesLabelDown.Location = new System.Drawing.Point(12, 238);
+            this.CombiningShelvesLabelDown.Name = "CombiningShelvesLabelDown";
+            this.CombiningShelvesLabelDown.Size = new System.Drawing.Size(164, 15);
+            this.CombiningShelvesLabelDown.TabIndex = 30;
+            this.CombiningShelvesLabelDown.Text = "(от 2х до введенного кол-ва)";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 321);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.radioButton2);
+            this.ClientSize = new System.Drawing.Size(438, 313);
+            this.Controls.Add(this.CombiningShelvesLabelDown);
+            this.Controls.Add(this.CombiningShelvesLabelUp);
+            this.Controls.Add(this.NumberCombinedShelves);
+            this.Controls.Add(this.CombiningShelvesUpRadioButton);
+            this.Controls.Add(this.CombiningShelvesCheckBox);
+            this.Controls.Add(this.CombiningShelvesDownRadioButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ShelvesHeight);
             this.Controls.Add(this.SchemeButton);
@@ -309,12 +315,12 @@ namespace RackUI
         private System.Windows.Forms.TextBox ShelvesHeight;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton CombiningShelvesDownRadioButton;
+        private System.Windows.Forms.CheckBox CombiningShelvesCheckBox;
+        private System.Windows.Forms.RadioButton CombiningShelvesUpRadioButton;
+        private System.Windows.Forms.TextBox NumberCombinedShelves;
+        private System.Windows.Forms.Label CombiningShelvesLabelUp;
+        private System.Windows.Forms.Label CombiningShelvesLabelDown;
     }
 }
 

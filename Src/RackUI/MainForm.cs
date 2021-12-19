@@ -79,38 +79,56 @@ namespace RackUI
            
             try
             {
-                _currentParameters =
-                   new RackParameters(IntParse(HeightFromFloor),
-                   IntParse(MaterialThickness),
-                   IntParse(RackDepth),
-                   IntParse(RackHeight),
-                   IntParse(RackWidth),
-                   IntParse(ShelvesNumber));
+                if (CombiningShelvesCheckBox.Checked)
+                {
+                    CombiningShelvesType type = 
+                        CombiningShelvesUpRadioButton.Checked?
+                        CombiningShelvesType.CombiningUp:
+                        CombiningShelvesType.CombiningDown;
+                    _currentParameters =
+                        new RackParameters(IntParse(HeightFromFloor),
+                            IntParse(MaterialThickness),
+                            IntParse(RackDepth),
+                            IntParse(RackHeight),
+                            IntParse(RackWidth),
+                            IntParse(ShelvesNumber),
+                            IntParse(NumberCombinedShelves),
+                            type);
+                }
+                else
+                {
+                    _currentParameters =
+                        new RackParameters(IntParse(HeightFromFloor),
+                            IntParse(MaterialThickness),
+                            IntParse(RackDepth),
+                            IntParse(RackHeight),
+                            IntParse(RackWidth),
+                            IntParse(ShelvesNumber));
+                }
 
-                 if (_currentParameters.ErrorsDictionary.Count != 0)
-                 {
-                     string message = null;
-                     foreach (var param in 
-                         _currentParameters.ErrorsDictionary.Keys)
-                     {
-                         message += 
-                            _currentParameters.ErrorsDictionary[param]
-                            + "\n";
-                        string textboxname = param.ToString();
-                         TextBox textBox = 
-                            Controls.Find(textboxname,true)[0] 
-                            as TextBox;
-                         textBox.BackColor = _incorrentInputColor;
-                     }
-                         MessageBox.Show
-                        (
-                            message,
-                            "Ошибка ввода",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                         );
-                         return;
-                 }
+                if (_currentParameters.ErrorsDictionary.Count != 0)
+                {
+                    string message = null;
+                    foreach (var param in 
+                        _currentParameters.ErrorsDictionary.Keys)
+                    {
+                        message += 
+                           _currentParameters.ErrorsDictionary[param]
+                           + "\n";
+                       string textboxname = param.ToString();
+                       TextBox textBox =
+                            Controls.Find(textboxname,false)[0] 
+                           as TextBox;
+                        textBox.BackColor = _incorrentInputColor;
+                    }
+                        MessageBox.Show(
+                           message,
+                           "Ошибка ввода",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error
+                        );
+                        return;
+                }
 
                 _builder = new RackModelBuilder();
                 _builder.Assembly(_currentParameters);
@@ -132,5 +150,41 @@ namespace RackUI
             scheme.Show();
         }
 
+        /// <summary>
+        /// приватный метод отвечающий за включение\выключение
+        /// ввода параметров связанных с объединением
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CombiningShelvesCheckBox_CheckedChanged
+            (object sender, EventArgs e)
+        {
+            if (CombiningShelvesCheckBox.Checked)
+            {
+                EnableCombining(true);
+            }
+            else
+            {
+                EnableCombining(false);
+                NumberCombinedShelves.Text = null;
+            }
+        }
+
+        /// <summary>
+        /// приватный метод отвечающий за
+        /// включение\выключение полей для объединения полок
+        /// </summary>
+        /// <param name="isEnabled">включить или выключить
+        /// объединение</param>
+        private void EnableCombining(bool isEnabled)
+        {
+            CombiningShelvesDownRadioButton.Enabled = isEnabled;
+            CombiningShelvesUpRadioButton.Enabled = isEnabled;
+            NumberCombinedShelves.Enabled = isEnabled;
+            CombiningShelvesLabelDown.Enabled = isEnabled;
+            CombiningShelvesLabelUp.Enabled = isEnabled;
+            CombiningShelvesDownRadioButton.Checked = isEnabled;
+            CombiningShelvesUpRadioButton.Checked = isEnabled;
+        }
     }
 }

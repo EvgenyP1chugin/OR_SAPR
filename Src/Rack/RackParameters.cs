@@ -45,6 +45,17 @@ namespace Rack
         private int _shelvesNumber;
 
         /// <summary>
+        /// Количество полок, которые будут объединены
+        /// </summary>
+        private int _numberCombinedShelves = 0;
+
+        /// <summary>
+        /// Тип объединения полок
+        /// </summary>
+        private CombiningShelvesType _combiningType = 
+            CombiningShelvesType.NoneCombining;
+
+        /// <summary>
         /// словарь для хранения ошибок ввода
         /// </summary>
         public Dictionary<ParametersType, string> ErrorsDictionary { get; }
@@ -158,19 +169,13 @@ namespace Rack
 
             set
             {
-                try
-                {
-                    const int minValue = 2;
-                    Validator.CheckParametersValue(minValue, (_rackHeight -
-                        _heightFromFloor - _materialThickness) % 200,
-                        value, ParametersType.ShelvesNumber);
-                    _shelvesNumber = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(ParametersType.ShelvesNumber,
-                        ex.Message);
-                }
+                const int minValue = 2; 
+                int maxValue = (_rackHeight 
+                                - _heightFromFloor 
+                                - _materialThickness) % 200;
+                SetValue(ref _shelvesNumber, value, minValue,
+                    maxValue, ParametersType.ShelvesNumber);
+              
             }
         }
 
@@ -184,24 +189,36 @@ namespace Rack
             get => _shelvesHeight;
 
              set
-            {
-                try
-                {
-                    const int minValue = 200;
-                    Validator.CheckParametersValue(minValue, (_rackHeight -
-                        _heightFromFloor - _materialThickness) / 2,
-                        value, ParametersType.ShelvesHeight);
-                    _shelvesHeight = value;
-                }
-                catch (Exception ex)
-                {
-                    ErrorsDictionary.Add(ParametersType.ShelvesHeight,
-                        ex.Message);
-                }
+             {
+                const int minValue = 200;
+                int maxValue = (_rackHeight 
+                                - _heightFromFloor 
+                                - _materialThickness) / 2;
+                SetValue(ref _shelvesHeight, value, minValue,
+                    maxValue, ParametersType.ShelvesHeight);
 
+             }
+        }
+        /// <summary>
+        /// свойство обрабатывающее ввод
+        /// количества полок для объединения
+        /// </summary>
+        public int NumberCombinedShelves
+        {
+            get => _numberCombinedShelves;
+            
+            set
+            {
+                const int minValue = 2;
+                int maxValue = ShelvesNumber - 1;
+                SetValue(ref _numberCombinedShelves, value, 
+                    minValue, maxValue, 
+                    ParametersType.NumberCombinedShelves);
             }
         }
-
+       
+        public CombiningShelvesType CombiningType { get; set; }
+       
         /// <summary>
         /// метод, рассчитывающий расстояние между полками, 
         /// при текущих значениях
@@ -244,6 +261,23 @@ namespace Rack
             ShelvesHeight = SetShelvesHeight();
         }
 
+        public RackParameters(int heightFromFloor, int materialThickness,
+            int rackDepth, int rackHeight, int rackWidth,
+            int shelvesNumber, int numberCombinedShelves,
+            CombiningShelvesType type)
+        {
+            ErrorsDictionary.Clear();
+            HeightFromFloor = heightFromFloor;
+            MaterialThickness = materialThickness;
+            RackDepth = rackDepth;
+            RackHeight = rackHeight;
+            RackWidth = rackWidth;
+            ShelvesNumber = shelvesNumber;
+            NumberCombinedShelves = numberCombinedShelves;
+            ShelvesHeight = SetShelvesHeight();
+            CombiningType = type;
+        }
+
         /// <summary>
         /// установка значения
         /// </summary>
@@ -258,7 +292,8 @@ namespace Rack
             try
             {
 
-                Validator.CheckParametersValue(minValue, maxValue, value, parameter);
+                Validator.CheckParametersValue(minValue, maxValue,
+                    value, parameter);
                 property = value;
             }
             catch (Exception ex)

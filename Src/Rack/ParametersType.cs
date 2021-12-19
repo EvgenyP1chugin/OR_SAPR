@@ -41,6 +41,11 @@ namespace Rack
         /// <summary>
         /// количество полок 
         /// </summary>
-        ShelvesNumber
+        ShelvesNumber,
+
+        /// <summary>
+        /// Количество полок для объединения
+        /// </summary>
+        NumberCombinedShelves
     }
 }
