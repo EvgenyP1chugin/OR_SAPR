@@ -222,7 +222,7 @@ namespace Rack
             if (ErrorsDictionary.Count == 0)
             {
                 var currentValue = (_rackHeight - _heightFromFloor -
-                    _materialThickness * _shelvesNumber) / _shelvesNumber;
+                    _materialThickness) / _shelvesNumber;
                 return currentValue;
             }
             else

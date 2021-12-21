@@ -50,6 +50,7 @@ namespace RackUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 698);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Scheme";
             this.Text = "Scheme";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
