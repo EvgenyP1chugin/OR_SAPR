@@ -52,7 +52,7 @@ namespace Rack
         /// <summary>
         /// словарь для хранения ошибок ввода
         /// </summary>
-        public Dictionary<ParametersType, string> ErrorsDictionary { get; }
+        public Dictionary<ParametersType, string> ErrorsDictionary { get;}
             = new Dictionary<ParametersType, string>();
         
             
@@ -211,7 +211,10 @@ namespace Rack
             }
         }
        
-        public CombiningShelvesType CombiningShelvesType { get; set; }
+        /// <summary>
+        /// конструктор объединения полок
+        /// </summary>
+        public CombiningShelvesType CombiningShelvesType { get; set;}
        
         /// <summary>
         /// метод, рассчитывающий расстояние между полками, 

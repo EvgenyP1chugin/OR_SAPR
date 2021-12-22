@@ -184,7 +184,8 @@ namespace RackUI
         }
 
         /// <summary>
-        /// метод подсчета актуального кол-ва полок
+        /// метод для подсчета и вывода
+        /// количества доступных для создания полок
         /// для объединения
         /// </summary>
         private void ShelvesNumber_TextChanged(object sender, EventArgs e)
@@ -204,7 +205,8 @@ namespace RackUI
         /// обновить запись о диапазоне количества полок,
         /// когда меняется толщина материала
         /// </summary>
-        private void MaterialThickness_TextChanged(object sender, EventArgs e)
+        private void MaterialThickness_TextChanged
+            (object sender, EventArgs e)
         {
             CheckValidShelvesNumber();
         }
@@ -234,9 +236,12 @@ namespace RackUI
         /// </summary>
         private void CheckValidShelvesNumber()
         {
-            Int32.TryParse(RackHeight.Text, out int rackHeight);
-            Int32.TryParse(HeightFromFloor.Text, out int heightFromFloor);
-            Int32.TryParse(MaterialThickness.Text, out int materialThickness);
+            Int32.TryParse(RackHeight.Text,
+                out int rackHeight);
+            Int32.TryParse(HeightFromFloor.Text,
+                out int heightFromFloor);
+            Int32.TryParse(MaterialThickness.Text,
+                out int materialThickness);
             int shelvesNumber =
                 (rackHeight - heightFromFloor - materialThickness) / 200;
             label7.Text = $"(от 2 до " + $"{shelvesNumber - 1})";
