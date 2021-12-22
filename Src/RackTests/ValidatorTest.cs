@@ -15,7 +15,7 @@ namespace RackTests
 
         [TestCase(999,1000,3000,ParametersType.RackHeight, TestName =
             "Негативный - ввод значений вне диапазона")]
-        public void RackHeight_SetNegative(int incorrectValue,
+        public void Validator_SetNegative(int incorrectValue,
             int minValue,int maxValue, ParametersType parametersType)
         {
 
@@ -28,7 +28,7 @@ namespace RackTests
 
         [TestCase(1005,1000,3000,ParametersType.RackHeight, TestName =
             "Позитивный - ввод значений в диапазоне")]
-        public void RackHeight_SetPositive(int correctValue,
+        public void Validator_SetPositive(int correctValue,
             int minValue,int maxValue, ParametersType parametersType)
         {
             Assert.DoesNotThrow(() => Validator.CheckParametersValue(minValue, maxValue,

@@ -98,7 +98,7 @@ namespace RackTests
         }
 
         [TestCase(TestName = 
-            "Позитивный - Отправить значения по умолчанию, про")]
+            "Позитивный - Отправить значения по умолчанию")]
         public void TestGetErrors_NoErrorsValue()
         {
            
