@@ -126,7 +126,7 @@ namespace RackUI
             this.RackHeight.Size = new System.Drawing.Size(100, 23);
             this.RackHeight.TabIndex = 13;
             this.RackHeight.Text = "2000";
-            this.RackHeight.TextChanged += new System.EventHandler(this.RackHeight_TextChanged);
+            this.RackHeight.TextChanged += new System.EventHandler(this.ShelvesParameters_TextChanged);
             // 
             // RackDepth
             // 
@@ -151,7 +151,7 @@ namespace RackUI
             this.HeightFromFloor.Size = new System.Drawing.Size(100, 23);
             this.HeightFromFloor.TabIndex = 16;
             this.HeightFromFloor.Text = "90";
-            this.HeightFromFloor.TextChanged += new System.EventHandler(this.HeightFromFloor_TextChanged);
+            this.HeightFromFloor.TextChanged += new System.EventHandler(this.ShelvesNumber_TextChanged);
             // 
             // MaterialThickness
             // 
@@ -160,7 +160,7 @@ namespace RackUI
             this.MaterialThickness.Size = new System.Drawing.Size(100, 23);
             this.MaterialThickness.TabIndex = 17;
             this.MaterialThickness.Text = "15";
-            this.MaterialThickness.TextChanged += new System.EventHandler(this.MaterialThickness_TextChanged);
+            this.MaterialThickness.TextChanged += new System.EventHandler(this.ShelvesParameters_TextChanged);
             // 
             // ShelvesNumber
             // 

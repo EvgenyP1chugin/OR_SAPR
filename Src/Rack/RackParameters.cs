@@ -55,7 +55,14 @@ namespace Rack
         public Dictionary<ParametersType, string> ErrorsDictionary { get;}
             = new Dictionary<ParametersType, string>();
         
-            
+        //TODO: RSDN
+        /// <summary>
+        /// установка значений по умолчанию 
+        /// для проектируемой 3D-модели стеллажа 
+        /// </summary>
+        public static RackParameters DefaultParameters =>
+            new RackParameters(80, 10, 300, 1000, 300, 2, 1,
+                CombiningShelvesType.NoneCombining);
 
         /// <summary>
         /// свойство обрабатывающее поле 

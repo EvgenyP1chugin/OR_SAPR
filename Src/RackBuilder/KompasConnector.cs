@@ -6,11 +6,11 @@ using RackBuilder.Service;
 
 namespace RackBuilder
 {
-     //TODO: RSDN
+    //TODO: RSDN
     ///<summary>
     /// класс для работы с Компас 3D
     /// </summary>
-    class KompasConnector
+    public class KompasConnector
     {
         ///<summary>
         /// объект Компас 3D

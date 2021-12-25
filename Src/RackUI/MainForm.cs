@@ -27,17 +27,10 @@ namespace RackUI
         /// текущие параметры 3D-модели,
         /// изначально им присваиваются значения по умолчанию
         /// </summary>
-        private RackParameters _currentParameters = DefaultParameters;
+        private RackParameters _currentParameters =
+            RackParameters.DefaultParameters;
 
-        //TODO: RSDN
-        /// <summary>
-        /// установка значений по умолчанию 
-        /// для проектируемой 3D-модели стеллажа 
-        /// </summary>
-        public static RackParameters DefaultParameters => 
-            new RackParameters(80, 10, 300, 1000, 300, 2, 1,
-                CombiningShelvesType.NoneCombining);
-        
+
         /// <summary>
         /// инициализация главной формы
         /// </summary>
@@ -190,9 +183,10 @@ namespace RackUI
         /// </summary>
         private void ShelvesNumber_TextChanged(object sender, EventArgs e)
         {
-            var wasParsed = Int32.TryParse(ShelvesNumber.Text, out int result);
+            var wasParsed = Int32.TryParse(ShelvesNumber.Text,
+                out int result);
             var resultMessage = wasParsed
-                ? $"{result - 1})"
+                ? $"{result - 1}"
                 : "n";
             CombiningShelvesLabelDown.Text = $@"(от 1 до {resultMessage})";
         }
@@ -201,39 +195,11 @@ namespace RackUI
         /// <summary>
         /// обновить запись о диапазоне количества полок,
         /// когда меняется толщина материала
+        /// высота стеллажа
+        /// высота от пола до нижней полки
         /// </summary>
-        private void MaterialThickness_TextChanged
+        private void ShelvesParameters_TextChanged
             (object sender, EventArgs e)
-        {
-            CheckValidShelvesNumber();
-        }
-
-        //TODO: Дубли
-        /// <summary>
-        /// метод подсчета актуального количества полок,
-        /// когда меняется высота стеллажа
-        /// </summary>
-        private void RackHeight_TextChanged(object sender, EventArgs e)
-        {
-            CheckValidShelvesNumber();
-        }
-
-        //TODO: Дубли
-        /// <summary>
-        /// метод подсчета актуального количества полок,
-        /// когда меняется высота пространства
-        /// от пола до нижней полки
-        /// </summary>
-        private void HeightFromFloor_TextChanged(object sender,
-            EventArgs e)
-        {
-            CheckValidShelvesNumber();
-        }
-
-        /// <summary>
-        /// метод подсчета актуального количества полок
-        /// </summary>
-        private void CheckValidShelvesNumber()
         {
             Int32.TryParse(RackHeight.Text,
                 out int rackHeight);
@@ -245,5 +211,6 @@ namespace RackUI
                 (rackHeight - heightFromFloor - materialThickness) / 200;
             label7.Text = $"(от 2 до " + $"{shelvesNumber - 1})";
         }
+
     }
 }
