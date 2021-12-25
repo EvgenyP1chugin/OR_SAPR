@@ -68,7 +68,6 @@ namespace Rack
 
             set
             {
-                //TODO: дублирование
                 const int minValue = 80;
                 const int maxValue = 100;
                 SetValue(ref _heightFromFloor, value, minValue,
@@ -87,7 +86,6 @@ namespace Rack
 
             set
             {
-                //TODO: дублирование
                 const int minValue = 10;
                 const int maxValue = 20;
                 SetValue(ref _materialThickness, value, minValue,
@@ -106,7 +104,6 @@ namespace Rack
 
             set
             {
-                //TODO: дублирование
                 const int minValue = 300;
                 const int maxValue = 600;
                 SetValue(ref _rackDepth, value, minValue,
@@ -125,7 +122,6 @@ namespace Rack
 
             set
             {
-                //TODO: дублирование
                 const int minValue = 1000;
                 const int maxValue = 3000;
                 SetValue(ref _rackHeight, value, minValue,
@@ -144,7 +140,6 @@ namespace Rack
 
             set
             {
-                //TODO: дублирование
                 const int minValue = 300;
                 const int maxValue = 800;
                 SetValue(ref _rackWidth, value, minValue,
@@ -285,8 +280,6 @@ namespace Rack
                 ErrorsDictionary.Add(parameter,
                     ex.Message);
             }
-           
         }
-
     }
 }

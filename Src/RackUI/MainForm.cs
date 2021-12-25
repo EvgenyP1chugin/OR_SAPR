@@ -29,6 +29,7 @@ namespace RackUI
         /// </summary>
         private RackParameters _currentParameters = DefaultParameters;
 
+        //TODO: RSDN
         /// <summary>
         /// установка значений по умолчанию 
         /// для проектируемой 3D-модели стеллажа 
@@ -141,7 +142,6 @@ namespace RackUI
         /// </summary>
         private void SchemeButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN
             var scheme = new Scheme();
             scheme.Show();
         }
@@ -190,17 +190,14 @@ namespace RackUI
         /// </summary>
         private void ShelvesNumber_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(ShelvesNumber.Text,out int result) )
-            {
-                CombiningShelvesLabelDown.Text = 
-                    $"(от 1 до {result - 1})";
-            }
-            else
-            {
-                CombiningShelvesLabelDown.Text = $"(от 1 до n)";
-            }
+            var wasParsed = Int32.TryParse(ShelvesNumber.Text, out int result);
+            var resultMessage = wasParsed
+                ? $"{result - 1})"
+                : "n";
+            CombiningShelvesLabelDown.Text = $@"(от 1 до {resultMessage})";
         }
        
+        //TODO: Дубли
         /// <summary>
         /// обновить запись о диапазоне количества полок,
         /// когда меняется толщина материала
@@ -211,6 +208,7 @@ namespace RackUI
             CheckValidShelvesNumber();
         }
 
+        //TODO: Дубли
         /// <summary>
         /// метод подсчета актуального количества полок,
         /// когда меняется высота стеллажа
@@ -220,6 +218,7 @@ namespace RackUI
             CheckValidShelvesNumber();
         }
 
+        //TODO: Дубли
         /// <summary>
         /// метод подсчета актуального количества полок,
         /// когда меняется высота пространства
