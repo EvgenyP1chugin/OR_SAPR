@@ -55,7 +55,6 @@ namespace Rack
         public Dictionary<ParametersType, string> ErrorsDictionary { get;}
             = new Dictionary<ParametersType, string>();
         
-        //TODO: RSDN
         /// <summary>
         /// установка значений по умолчанию 
         /// для проектируемой 3D-модели стеллажа 
