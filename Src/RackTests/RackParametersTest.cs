@@ -14,9 +14,8 @@ namespace RackTests
         /// <summary>
         /// Экземпляр стеллажа со значениями 
         /// </summary>
-        private static RackParameters RackParameters =>
-            new RackParameters(80, 10, 300, 1000, 300, 2, 1,
-                CombiningShelvesType.NoneCombining);
+        private static RackParameters RackParameters => 
+            RackParameters.DefaultParameters;
 
         [TestCase(10, ParametersType.MaterialThickness,
             TestName = "Позитивный - ввод толщины материала")]
@@ -33,7 +32,7 @@ namespace RackTests
             TestName = "Позитивный - ввод кол-ва полок")]
         [TestCase(200, ParametersType.ShelvesHeight,
             TestName = "Позитивный - ввод высоты полок")]
-        public void RackParametersNoCombining_SetPositive( int correctValue,
+        public void RackParametersNoCombining_SetPositive(int correctValue,
             ParametersType parameter)
         {
             var rackParameters = RackParameters;
@@ -52,7 +51,8 @@ namespace RackTests
 
 
         [TestCase(ParametersType.NumberCombinedShelves,
-            "Значение параметра NumberCombinedShelves не вошло в диапазон",
+            "Значение параметра NumberCombinedShelves" +
+            " не вошло в диапазон",
             TestName = "Позитивный - проверка совпадения текста ошибки " +
                        "при вводе кол-во полок для объединения")]
         [TestCase(ParametersType.RackHeight,
@@ -60,7 +60,8 @@ namespace RackTests
            TestName = "Позитивный - проверка совпадения текста ошибки" +
                       " при вводе высоты стеллажа")]
         [TestCase(ParametersType.HeightFromFloor,
-            "Значение параметра HeightFromFloor не вошло в диапазон",
+            "Значение параметра HeightFromFloor" +
+            " не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе высоты от пола до нижней полки")]
         [TestCase(ParametersType.RackDepth,
@@ -76,7 +77,8 @@ namespace RackTests
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе количества полок")]
         [TestCase(ParametersType.MaterialThickness,
-            "Значение параметра MaterialThickness не вошло в диапазон",
+            "Значение параметра MaterialThickness " +
+            "не вошло в диапазон",
            TestName = "Позитивный - проверка совпадения текста ошибки " +
                       "при вводе толщины материала")]
         [TestCase(ParametersType.ShelvesHeight,
@@ -87,10 +89,13 @@ namespace RackTests
             (ParametersType parametersType, string errorText)
         {
             var rackParameters = 
-                new RackParameters(79, 9, 299, 999, 299, -1, 0,
+                new RackParameters(79, 9,
+                    299, 999, 299,
+                    -1, 0,
                     CombiningShelvesType.CombiningUp);
 
-            var error = rackParameters.ErrorsDictionary[parametersType];
+            var error = 
+                rackParameters.ErrorsDictionary[parametersType];
             var actual = error;
 
             Assert.AreEqual
@@ -103,7 +108,8 @@ namespace RackTests
         {
            
             var rackParameters = RackParameters;
-            var actual = rackParameters.ErrorsDictionary;
+            var actual = 
+                rackParameters.ErrorsDictionary;
 
             Assert.IsEmpty(actual, "Словарь не пуст");
         }
@@ -141,7 +147,8 @@ namespace RackTests
             var expected = combiningType;
 
             rackParameters.CombiningShelvesType = combiningType;
-            var actual = rackParameters.CombiningShelvesType;
+            var actual =
+                rackParameters.CombiningShelvesType;
 
             Assert.AreEqual(expected, actual,
                 $"Количество полок для объединения " +

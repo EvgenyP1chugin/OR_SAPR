@@ -58,7 +58,8 @@ namespace RackUI
             catch
             {
                 textBox.BackColor = _incorrentInputColor;
-                throw new ArgumentException("Введено не целое число");
+                throw new ArgumentException(
+                    "Введено не целое число");
             }
         }
 
@@ -87,7 +88,8 @@ namespace RackUI
                 }
 
                 _currentParameters =
-                    new RackParameters(IntParse(HeightFromFloor),
+                    new RackParameters(
+                        IntParse(HeightFromFloor),
                         IntParse(MaterialThickness),
                         IntParse(RackDepth),
                         IntParse(RackHeight),
