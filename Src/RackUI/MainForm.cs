@@ -200,7 +200,8 @@ namespace RackUI
         /// высота стеллажа
         /// высота от пола до нижней полки
         /// </summary>
-        private void ShelvesParameters_TextChanged(object sender, EventArgs e)
+        private void ShelvesParameters_TextChanged(object sender,
+            EventArgs e)
         {
             Int32.TryParse(RackHeight.Text,
                 out int rackHeight);

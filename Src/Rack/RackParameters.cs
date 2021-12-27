@@ -60,7 +60,7 @@ namespace Rack
         /// для проектируемой 3D-модели стеллажа 
         /// </summary>
         public static RackParameters DefaultParameters =>
-            new RackParameters(80, 10, 
+            new (80, 10, 
                 300, 1000, 300, 
                 2, 1,
                 CombiningShelvesType.NoneCombining);
